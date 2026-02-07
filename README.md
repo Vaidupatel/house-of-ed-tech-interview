@@ -178,5 +178,5 @@ npm run dev
 
 ```
 Ghelani vaidik
-vaidpatel11@gmail.com`
+vaidpatel11@gmail.com
 ```
