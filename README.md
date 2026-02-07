@@ -82,7 +82,8 @@ root/
 - Node.js
 - Express.js
 - MongoDB + Mongoose
-- qdrant - Vector data base
+- Qdrant - Vector data base
+- Groq - LLM
 - Aggregation Pipelines
 - JWT Authentication
 - Netlify - Frontend deploy

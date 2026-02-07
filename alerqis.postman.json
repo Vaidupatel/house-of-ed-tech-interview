@@ -1,0 +1,660 @@
+{
+  "info": {
+    "_postman_id": "650a79a4-3d40-4506-a762-18b479c0e173",
+    "name": "House of ed tech",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31968829"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "auth",
+          "item": [
+            {
+              "name": "Register",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "vaid",
+                      "type": "text",
+                      "uuid": "b66e3f8d-622b-4894-b001-c9f53a610c48"
+                    },
+                    {
+                      "key": "email",
+                      "value": "vaid@yopmail.com",
+                      "type": "text",
+                      "uuid": "fca59ac8-cc1a-4661-88c5-431f0220fb01"
+                    },
+                    {
+                      "key": "password",
+                      "value": "Abcd@123",
+                      "type": "text",
+                      "uuid": "38696089-40a5-4de7-8778-d4b611a0bc3f"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{url}}/admin/auth/signup",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "auth",
+                    "signup"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let jsonData = pm.response.json();\r",
+                      "if (jsonData.status && jsonData.data) {\r",
+                      "    if (jsonData.data.token) {\r",
+                      "        pm.environment.set(\"adminAuthToken\", jsonData.data.token);\r",
+                      "    }\r",
+                      "    pm.environment.set(\"adminemail\", jsonData.data.admin.email);\r",
+                      "    console.log(\"Token saved to environment variable: authToken\");\r",
+                      "} else {\r",
+                      "    console.log(\"Token not found in response\");\r",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "email",
+                      "value": "vaid@yopmail.com",
+                      "type": "text",
+                      "uuid": "a1ad1d9b-f49a-45ac-becf-aa7a428748f5"
+                    },
+                    {
+                      "key": "password",
+                      "value": "Abcd@123",
+                      "type": "text",
+                      "uuid": "61ed3122-d23b-4e5d-94c2-bf910ad80b81"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{url}}/admin/auth/login",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get profile",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{adminAuthToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "{{url}}/admin/auth/get",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "auth",
+                    "get"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Logout",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{adminAuthToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "{{url}}/admin/auth/logout",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Document",
+          "item": [
+            {
+              "name": "List all",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{adminAuthToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "{{url}}/admin/user/document/get?page=1&limit=1",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "user",
+                    "document",
+                    "get"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "auth",
+          "item": [
+            {
+              "name": "Register",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "vaid",
+                      "type": "text",
+                      "uuid": "b66e3f8d-622b-4894-b001-c9f53a610c48"
+                    },
+                    {
+                      "key": "email",
+                      "value": "vaid@yopmail.com",
+                      "type": "text",
+                      "uuid": "fca59ac8-cc1a-4661-88c5-431f0220fb01"
+                    },
+                    {
+                      "key": "password",
+                      "value": "Abcd@123",
+                      "type": "text",
+                      "uuid": "38696089-40a5-4de7-8778-d4b611a0bc3f"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{url}}/user/auth/signup",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "auth",
+                    "signup"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let jsonData = pm.response.json();\r",
+                      "if (jsonData.status && jsonData.data) {\r",
+                      "    if (jsonData.data.token) {\r",
+                      "        pm.environment.set(\"userAuthToken\", jsonData.data.token);\r",
+                      "    }\r",
+                      "    pm.environment.set(\"useremail\", jsonData.data.user.email);\r",
+                      "    console.log(\"Token saved to environment variable: authToken\");\r",
+                      "} else {\r",
+                      "    console.log(\"Token not found in response\");\r",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "email",
+                      "value": "vaid@yopmail.com",
+                      "type": "text",
+                      "uuid": "a1ad1d9b-f49a-45ac-becf-aa7a428748f5"
+                    },
+                    {
+                      "key": "password",
+                      "value": "Abcd@123",
+                      "type": "text",
+                      "uuid": "61ed3122-d23b-4e5d-94c2-bf910ad80b81"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{url}}/user/auth/login",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get profile",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{userAuthToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "{{url}}/user/auth/get",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "auth",
+                    "get"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Logout",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{adminAuthToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "{{url}}/admin/auth/logout",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Document",
+          "item": [
+            {
+              "name": "create",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{userAuthToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "testing",
+                      "type": "text"
+                    },
+                    {
+                      "key": "allowed_origin",
+                      "value": "*",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Teting the uploading of document",
+                      "type": "text"
+                    },
+                    {
+                      "key": "text",
+                      "value": "",
+                      "type": "text",
+                      "uuid": "9a9e2846-734f-4e5d-b33d-d3d886f52905",
+                      "disabled": true
+                    },
+                    {
+                      "key": "document",
+                      "type": "file",
+                      "uuid": "1220da83-bb36-4c81-81c8-e5835287f584",
+                      "src": "/D:/House_OD_ED_TECH/Text data/test_paragraphs.txt"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{url}}/user/document/add",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "document",
+                    "add"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get al",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{userAuthToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "{{url}}/user/document/get",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "document",
+                    "get"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Question",
+          "item": [
+            {
+              "name": "ask",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer cadba2f13b838d95365458238f3cd23f34c91779f422379625f95d008922a19e",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "question",
+                      "value": "who is ronaldo",
+                      "type": "text",
+                      "uuid": "42b23425-9142-4f2f-968e-ca6e6e5349ed"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{url}}/user/query/ask",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "query",
+                    "ask"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Embed railways",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer TR-JK(yeKs{pB%-SO7rOi}ofWJ^V%m)J[AMHJ~!"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"texts\": [\n      \"This is the first paragraph.\",\n      \"This is another paragraph to embed.\"\n    ],\n    \"normalize\": true\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://embeddingserverrailways-production.up.railway.app/embed",
+          "protocol": "https",
+          "host": [
+            "embeddingserverrailways-production",
+            "up",
+            "railway",
+            "app"
+          ],
+          "path": [
+            "embed"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
